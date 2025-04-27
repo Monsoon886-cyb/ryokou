@@ -1,0 +1,146 @@
+extends base
+
+mixin reviewCard(review)
+  .review-user
+    img.review-user-img(src=`/img/users/${review.user.photo}`, alt=`${review.user.name}`)
+    .review-user-info
+      span.review-user-name= review.user.name
+      span.review-date= review.createdAt.toLocaleString('en-US', {month: 'long', year: 'numeric'})
+  .review-text
+    p= review.review
+  .review-rating
+    - const rating = Math.round(review.rating)
+    each star in [1, 2, 3, 4, 5]
+      if star <= rating
+        i.fas.fa-star.review-star
+      else
+        i.far.fa-star.review-star
+
+block content
+  .tour-container
+    .tour-header
+      .tour-image-container
+        .tour-image-overlay
+        img.tour-image(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+        h1.tour-title= tour.name
+
+    .tour-details
+      .tour-overview
+        .tour-overview-item
+          i.fas.fa-clock.tour-icon
+          span= `${tour.duration} days`
+        .tour-overview-item
+          i.fas.fa-map-marker-alt.tour-icon
+          span= tour.startLocation.description
+        .tour-overview-item
+          i.fas.fa-users.tour-icon
+          span= tour.maxGroupSize
+        .tour-overview-item
+          i.fas.fa-star.tour-icon
+          span= tour.ratingsAverage
+
+      .tour-description
+        h3.tour-section-title About This Tour
+        p.tour-text= tour.summary
+
+      .tour-summary
+        h3.tour-section-title Tour Summary
+        .tour-summary-content
+          p.tour-text= tour.description
+
+      .tour-images
+        .tour-images-grid
+          each img, i in tour.images
+            .tour-image-box
+              img.tour-img(src=`/img/tours/${img}`, alt=`Tour Image ${i + 1}`)
+
+      .explore-button-container
+        a.explore-btn(href=`/explore/${tour.id}`) 
+          i.fas.fa-compass
+          span Explore
+      
+      .tour-guides
+        h3.tour-section-title Your Tour Guides
+
+        each guide in tour.guides
+          .tour-guide
+            img.tour-guide-img(src=`/img/users/${guide.photo}`, alt=`${guide.name}`)
+            .tour-guide-info
+              span.tour-guide-role= guide.role
+              span.tour-guide-name= guide.name
+
+
+      .tour-locations
+        h3.tour-section-title Start Locations
+        if tour.locations && tour.locations.length > 0
+          .tour-location
+            i.fas.fa-map-marker-alt.tour-location-icon
+            .tour-location-info
+              span.tour-location-name= tour.locations[0].description
+              span.tour-location-day= tour.startDates[0].toLocaleString('en-US', {month: 'long', year: 'numeric'})
+        if tour.locations && tour.locations.length > 1
+          .tour-location
+            i.fas.fa-map-marker-alt.tour-location-icon
+            .tour-location-info
+              span.tour-location-name= tour.locations[1].description
+              span.tour-location-day= tour.startDates[1].toLocaleString('en-US', {month: 'long', year: 'numeric'})
+        if tour.locations && tour.locations.length > 2
+          .tour-location
+            i.fas.fa-map-marker-alt.tour-location-icon
+            .tour-location-info
+              span.tour-location-name= tour.locations[2].description
+              span.tour-location-day= tour.startDates[2].toLocaleString('en-US', {month: 'long', year: 'numeric'})
+
+      .review-button-container
+        button.review-btn#reviewButton 
+          .star-icon-container
+            i.fas.fa-star
+          span Review
+          
+      .review-form-container#reviewFormContainer
+        form.review-form#reviewForm(data-tour-id=tour.id data-user-id=user ? user.id : '')
+          h3.review-form-title Share Your Experience
+          .form-group
+            label(for="rating") Rating
+            .star-rating
+              input#star5(type="radio" name="rating" value="5")
+              label(for="star5")
+                i.fas.fa-star
+              input#star4(type="radio" name="rating" value="4")
+              label(for="star4")
+                i.fas.fa-star
+              input#star3(type="radio" name="rating" value="3")
+              label(for="star3")
+                i.fas.fa-star
+              input#star2(type="radio" name="rating" value="2")
+              label(for="star2")
+                i.fas.fa-star
+              input#star1(type="radio" name="rating" value="1")
+              label(for="star1")
+                i.fas.fa-star
+          .form-group
+            label(for="review") Your Review
+            textarea#review(name="review" placeholder="Tell us about your experience with this tour..." rows="4" required)
+          .form-actions
+            button.btn-cancel(type="button") Cancel
+            button.btn-submit(type="submit") Submit Review
+
+      .tour-reviews
+        h3.tour-section-title Reviews
+        .reviews-container
+          each review in tour.reviews
+            +reviewCard(review)
+
+    .tour-cta
+      .tour-price
+        span.tour-price-value= `Rs ${tour.price}`
+        span.tour-price-text per person
+      if user
+        a.tour-book-btn(href=`/tour/${tour.id}/book`) Book This Tour
+          i.fas.fa-arrow-right
+      else
+        a.tour-book-btn(href='/login') Login to Book
+          i.fas.fa-arrow-right 
+
+block scripts
+  script(src="/js/reviewForm.js") 

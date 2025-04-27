@@ -1,0 +1,40 @@
+extends base
+
+block content
+  .login-container
+    .animated-bg
+      .circle.circle1
+      .circle.circle2
+      .circle.circle3
+      
+    .login-form-container
+      h2.login-heading Create your account
+      form.sign-up
+        .form-group
+          label.form-label(for="name") Your Name
+          input.form-input#name(type="text" placeholder="Enter your name" required)
+        .form-group
+          label.form-label(for="email") Email address
+          input.form-input#email(type="email" placeholder="you@example.com" required)
+        .form-group
+          label.form-label(for="password") Password
+          input.form-input#password(type="password" placeholder="••••••••" required minlength="8")
+        .form-group
+          label.form-label(for="passwordConfirm") Confirm Password
+          input.form-input#passwordConfirm(type="password" placeholder="••••••••" required minlength="8")
+        .form-actions
+          button.btn.login-btn-submit(type="submit") Sign Up
+      
+      .login-footer
+        p.login-signup-text Already have an account? 
+          a.login-signup-link(href="/login") Log in here
+    
+    .login-image
+      .login-image-overlay
+      img.login-background-img(src="/img/frieren.jpg" alt="Frieren beyond journey's end")
+      .login-quote
+        p.login-quote-text "A journey of a thousand miles begins with a single step."
+        p.login-quote-author — Lao Tzu 
+
+block scripts
+  script(src="/js/signUp.js") 

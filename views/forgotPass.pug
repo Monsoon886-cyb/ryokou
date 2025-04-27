@@ -1,0 +1,21 @@
+extends base
+
+block content
+  main.main
+    .forgotpass-form
+      h2.heading-secondary.ma-bt-lg Forgot Password
+      form.form.form--forgot-password
+        .form__group
+          label.form__label(for='forgot-email') Email address
+          input#forgot-email.form__input(
+            type='email',
+            placeholder='you@example.com',
+            required
+          )
+        .form__group
+          button.btn.btn--green.btn--forgot-password Send Reset Link
+        .form__group
+          a.forgot-password-link(href='/login') Back to Login
+
+block scripts
+  script(src="/js/forgotPass.js") 

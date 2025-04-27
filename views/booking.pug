@@ -1,0 +1,116 @@
+extends base
+
+block content
+  .booking-container
+    .booking-header
+      h1.booking-title Complete Your Booking
+      p.booking-subtitle Confirm your tour details and proceed with payment
+
+    .booking-content
+      .booking-tour-info
+        h2.booking-section-title Tour Information
+        if tour
+          .booking-tour-details
+            .booking-tour-image
+              img.booking-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+            .booking-tour-text
+              h3.booking-tour-name= tour.name
+              .booking-tour-data
+                .booking-data-item
+                  i.fas.fa-calendar.booking-icon
+                  span= tour.startDates[0].toLocaleString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})
+                .booking-data-item
+                  i.fas.fa-clock.booking-icon
+                  span= `${tour.duration} days`
+                .booking-data-item
+                  i.fas.fa-users.booking-icon
+                  span= `${tour.maxGroupSize} people max`
+              .booking-price
+                span.booking-price-value= `Rs ${tour.price}`
+                span.booking-price-text per person
+
+      .booking-form-container
+        h2.booking-section-title Booking Details
+        form.booking-form(method='POST')
+          
+          #tourData.hidden-data(data-tour-id=`${tour.id}`, data-tour-price=`${tour.price}`) 
+          #userData.hidden-data(data-user-id=`${user.id}`)
+          #currency-symbol.hidden-data(data-currency="Rs")
+          
+          .form-group
+            label(for='fullName') Full Name
+            input#fullName.form-control(type='text', name='fullName', placeholder='Enter your full name', value=user ? user.name : '', required)
+          
+          .form-group
+            label(for='email') Email Address
+            input#email.form-control(type='email', name='email', placeholder='Enter your email', value=user ? user.email : '', required)
+          
+          .form-group
+            label(for='phone') Phone Number
+            input#phone.form-control(type='tel', name='phone', placeholder='Enter your phone number', required)
+          
+          .form-group
+            label(for='participants') Number of Participants
+            input#participants.form-control(type='number', name='participants', min='1', value='1', required)
+          
+          .form-group
+            label(for='participantNames') Names of Participants
+            textarea#participantNames.form-control(name='participantNames', rows='2', placeholder='Enter the names of all participants (separated by commas)')
+          
+          .form-group
+            label(for='specialRequests') Special Requests
+            textarea#specialRequests.form-control(name='specialRequests', rows='3', placeholder='Any special requests')
+          
+          .payment-section
+            h3.payment-section-title Payment Information
+            .credit-card-form
+              .card-header
+                i.far.fa-credit-card
+                span Credit Card Details
+              
+              .card-form-row
+                .form-group.card-number-group
+                  label(for='cardNumber') Card Number
+                  input#cardNumber.form-control(type='text', name='cardNumber', placeholder='1234 5678 9012 3456', maxlength='19', required)
+              
+              .card-form-row.two-columns
+                .form-group
+                  label(for='cardExpiry') Expiry Date
+                  input#cardExpiry.form-control(type='text', name='cardExpiry', placeholder='MM/YY', maxlength='5', required)
+                .form-group
+                  label(for='cardCVC') CVC
+                  input#cardCVC.form-control(type='text', name='cardCVC', placeholder='123', maxlength='3', required)
+              
+              .card-form-row
+                .form-group
+                  label(for='cardName') Name on Card
+                  input#cardName.form-control(type='text', name='cardName', placeholder='John Doe', required)
+              
+              .accepted-cards
+                i.fab.fa-cc-visa
+                i.fab.fa-cc-mastercard
+                i.fab.fa-cc-amex
+                i.fab.fa-cc-discover
+              
+              .card-security
+                i.fas.fa-lock
+                span All transactions are secure and encrypted
+          
+          .booking-summary
+            h3.booking-summary-title Booking Summary
+            .booking-summary-item
+              span.booking-summary-label Tour Price:
+              span.booking-summary-value= `Rs ${tour ? tour.price : '0'} per person`
+            .booking-summary-item
+              span.booking-summary-label Participants:
+              span.booking-summary-value#participantsCount 1
+            .booking-summary-item.booking-summary-total
+              span.booking-summary-label Total:
+              span.booking-summary-value#totalPrice= `Rs  ${tour ? tour.price : '0'}`
+          
+          
+          button.booking-btn(type='submit') Book Now
+            i.fas.fa-check
+
+block scripts
+  script(src='/js/booking.js') 

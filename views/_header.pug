@@ -1,0 +1,30 @@
+header.header
+  nav.nav.nav--tours
+    a(href="/tours", class="nav__el") Tours
+    //- form(class="nav__search")
+    //-   button(class="nav__search-btn")
+    //-     i.fas.fa-search
+    //-   input(type="text", placeholder="Search journeys", class="nav__search-input")
+  div(class="header__logo")
+    a(href="/")
+      .logo-text
+        span R
+        span Y
+        span O
+        span K
+        span O
+        span U
+  nav.nav.nav--user
+    if user
+      a(class="nav__el logout-btn") Log out
+      a(href="/itsme", class="nav__el nav__el--user")
+        if user.photo
+          img(src=`/img/users/${user.photo}`, alt="User photo", class="nav__user-img")
+        else
+          img(src="/img/users/default.jpg", alt="User photo", class="nav__user-img")
+        span.nav__user-name= user.name.split(' ')[0]
+      
+    else
+      .auth-buttons
+        a.login-btn(href="/login") Log In
+        a.signup-btn(href="/signup") Sign Up

@@ -1,0 +1,383 @@
+style.
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Montserrat', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Email container */
+  .email-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Header */
+  .email-header {
+    background: linear-gradient(135deg, #c33764 0%, #1d2671 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+  }
+
+  .email-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #FF9966, #FF5E62, #c33764, #1d2671);
+  }
+
+  .logo {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    margin: 8px 0 0;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 1px;
+  }
+
+  /* Hero image */
+  .hero-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Content area */
+  .email-content {
+    padding: 50px 40px;
+  }
+
+  .greeting {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .message {
+    margin-bottom: 25px;
+    color: #555;
+  }
+
+  .highlight {
+    color: #c33764;
+    font-weight: 600;
+  }
+
+  /* Japanese greeting */
+  .japanese-greeting {
+    font-size: 20px;
+    margin: 30px 0;
+    text-align: center;
+    color: #1d2671;
+    position: relative;
+  }
+
+  .jp-text {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+  }
+
+  .jp-translation {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    letter-spacing: 1px;
+  }
+
+  /* CTA button */
+  .cta-container {
+    text-align: center;
+    margin: 35px 0;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #c33764 0%, #1d2671 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(195, 55, 100, 0.3);
+  }
+
+  /* Features section */
+  .features {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 30px 0;
+  }
+
+  .features-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #1d2671;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    flex-grow: 1;
+    margin: 0;
+    color: #555;
+  }
+
+  /* Footer */
+  .email-footer {
+    background-color: #1d2671;
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .social-links {
+    margin-bottom: 20px;
+  }
+
+  .social-link {
+    display: inline-block;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .footer-text {
+    margin: 10px 0;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .footer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+  }
+
+  .unsubscribe {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  /* Booking Confirmation Styles */
+  .booking-details {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+    border-left: 4px solid #c33764;
+  }
+
+  .booking-details h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #1d2671;
+    font-size: 18px;
+  }
+
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .booking-table tr {
+    border-bottom: 1px solid #eee;
+  }
+
+  .booking-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .booking-label {
+    font-weight: 600;
+    color: #555;
+    padding: 8px 10px 8px 0;
+    width: 40%;
+    vertical-align: top;
+  }
+
+  .booking-value {
+    color: #333;
+    padding: 8px 0;
+  }
+
+  /* Booking reference special styling */
+  .booking-reference-row {
+    background-color: #f3f4f6;
+  }
+
+  .ref-value {
+    word-break: break-all;
+    font-size: 14px;
+    font-family: monospace;
+    padding: 10px 0;
+  }
+
+  /* Japanese Section */
+  .japanese-section {
+    text-align: center;
+    margin: 35px 0;
+    padding: 20px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    border-top: 2px solid #1d2671;
+    border-bottom: 2px solid #1d2671;
+  }
+
+  .japanese-text {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #1d2671;
+  }
+
+  .translation {
+    color: #555;
+    font-style: italic;
+    font-size: 16px;
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+
+  /* Tour Info Section */
+  .tour-info {
+    margin: 35px 0;
+  }
+
+  .tour-info h3 {
+    color: #1d2671;
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .tour-description {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.6;
+    padding: 0 5px;
+  }
+
+  .meeting-point {
+    background-color: #f3f4f6;
+    padding: 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-top: 15px;
+  }
+
+  /* Preparation Tips */
+  .preparation {
+    margin: 35px 0;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .preparation h3 {
+    color: #1d2671;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .preparation-list {
+    margin: 0;
+    padding-left: 25px;
+  }
+
+  .preparation-list li {
+    margin-bottom: 12px;
+    color: #555;
+    padding-left: 5px;
+  }
+
+  .preparation-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-bottom: 15px;
+    padding: 0 5px;
+    line-height: 1.6;
+  }
+
+  /* Responsive styles */
+  @media screen and (max-width: 600px) {
+    .email-container {
+      margin: 0;
+      width: 100%;
+      border-radius: 0;
+    }
+
+    .email-header, .email-content, .email-footer {
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+    }
+
+    .tagline {
+      font-size: 16px;
+    }
+
+    .hero-image {
+      height: 180px;
+    }
+    
+    .booking-details,
+    .japanese-section,
+    .preparation {
+      padding: 20px;
+    }
+    
+    .booking-label,
+    .booking-value {
+      padding: 10px 8px 10px 0;
+    }
+
+    .email-content {
+      padding: 30px 20px;
+    }
+  }

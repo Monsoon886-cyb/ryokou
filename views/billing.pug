@@ -1,0 +1,92 @@
+extends base
+
+block content
+  main.main
+    .billing-container
+      .billing-header
+        h2.billing-title My Billing History
+        p.billing-subtitle View and manage your booking payments
+      
+      if bookings && bookings.length > 0
+        .billing-summary
+          .summary-card
+            .summary-icon
+              i.fas.fa-receipt
+            .summary-details
+              h3.summary-title Total Bookings
+              p.summary-value= bookings.length
+          
+          .summary-card
+            .summary-icon
+              i.fas.fa-rupee-sign
+            .summary-details
+              h3.summary-title Total Spent
+              - const totalAmount = bookings.reduce((sum, booking) => sum + booking.price, 0)
+              p.summary-value Rs #{totalAmount.toLocaleString()}
+          
+          .summary-card
+            .summary-icon
+              i.fas.fa-calendar-alt
+            .summary-details
+              h3.summary-title Last Booking
+              - const lastDate = new Date(bookings[0].createdAt)
+              p.summary-value= lastDate.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+        
+        .billing-list
+          each booking in bookings
+            .billing-item
+              .billing-tour-info
+                if booking.tour && booking.tour.imageCover
+                  img.billing-tour-img(src=`/img/tours/${booking.tour.imageCover}`, alt=`${booking.tour.name}`)
+                .billing-tour-details
+                  h3.billing-tour-name= booking.tour ? booking.tour.name : 'Tour Unavailable'
+                  if booking.tour
+                    if booking.tour.startDates && booking.tour.startDates.length > 0
+                      p.billing-tour-date
+                        i.fas.fa-calendar-day
+                        | #{new Date(booking.tour.startDates[0]).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}
+                    else
+                      p.billing-tour-date
+                        i.fas.fa-calendar-day
+                        | Date unavailable
+                    
+                    p.billing-tour-duration
+                      i.fas.fa-clock
+                      | #{booking.tour.duration ? booking.tour.duration + ' days' : 'Duration unavailable'}
+              
+              .billing-details
+                .billing-detail-item
+                  span.billing-label Booking Date:
+                  span.billing-value= new Date(booking.createdAt).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+                
+                .billing-detail-item
+                  span.billing-label Booking ID:
+                  span.billing-value.booking-id= booking.paymentId
+                
+                .billing-detail-item
+                  span.billing-label Participants:
+                  span.billing-value= booking.passengerNum
+                
+                if booking.passengers && booking.passengers.length > 0
+                  .billing-detail-item
+                    span.billing-label Names:
+                    span.billing-value= booking.passengers.join(', ')
+                
+                .billing-detail-item.billing-price
+                  span.billing-label Amount Paid:
+                  span.billing-value.price Rs #{booking.price.toLocaleString()}
+                
+                .billing-detail-item
+                  span.billing-label Status:
+                  span.billing-value.status.status-paid Paid
+                
+                a.btn-receipt(href=`#`) 
+                  i.fas.fa-download
+                  | Download Receipt
+      else
+        .billing-empty
+          .empty-icon
+            i.fas.fa-receipt
+          h3.empty-title No Billing History Found
+          p.empty-text You haven't made any bookings yet. Start exploring tours now!
+          a.btn.btn--green(href='/tours') View Tours 

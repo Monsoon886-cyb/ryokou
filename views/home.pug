@@ -1,0 +1,83 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Ryokou
+    link(rel="stylesheet", href="/css/styleHome.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="icon", href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛩️</text></svg>")
+  body
+    .video-background
+      video#myVideo(autoplay, muted, loop)
+        source(src="/img/55915-478214349_medium.mp4", type="video/mp4")
+
+        img(src="/img/wallpaperflare.com_wallpaper (3).jpg", alt="Fallback background")
+    .animated-bg
+      .circle.circle1
+      .circle.circle2
+      .circle.circle3
+    header.header
+      .logo
+        a.logo-text(href="/")
+          i
+
+      if user
+        .auth-buttons
+          a.login-btn.logout-btn(style="cursor: pointer;") Log out
+          a.nav__el.nav__el--user(href="/itsme")
+            if user.photo
+              img.nav__user-img(src=`/img/users/${user.photo}`, alt="User photo")
+            else
+              img.nav__user-img(src="/img/users/default.jpg", alt="User photo")
+            span.nav__user-name= user.name.split(' ')[0]
+      else
+        .auth-buttons
+          a.explore-btn(href="/tours") Explore
+          
+
+      section.hero
+        .hero-content
+          h1
+            span(style="--letter-index: 1") R
+            span(style="--letter-index: 2") Y
+            span(style="--letter-index: 3") O
+            span(style="--letter-index: 4") K
+            span(style="--letter-index: 5") O
+            span(style="--letter-index: 6") U
+        
+          p.tagline Beyond Journey's End
+          .hero-cta
+            if user
+              a.cta-button(href="/tours") Start Your Journey 
+                i.fas.fa-arrow-right
+            else 
+              a.cta-button(href="/login") Start Your Journey 
+                i.fas.fa-arrow-right
+        .japanese-welcome
+          p いらっしゃいませ
+          span.jp-translation Welcome
+    footer.footer
+      .footer-content
+        p.creator
+          | Created with
+          span.leaf
+            i.fas.fa-leaf
+          | by
+          span.creator-name Monsoon Borah
+        .footer-social
+          a(href="#")
+            i.fas.fa-envelope
+          a(href="#")
+            i.fab.fa-github
+          a(href="#")
+            i.fab.fa-linkedin
+          a(href="#")
+            i.fab.fa-instagram
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.0/axios.min.js')
+      //- script(src="/js/script.js")
+    script(src="/js/login&out.js")

@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title= subject
+    link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap', rel='stylesheet')
+    
+    include _style
+     
+  body
+    div.email-container
+      // Header with logo
+      div.email-header
+        h1.logo RYOKOU
+        p.tagline Beyond Journey's End
+      
+      // Hero image
+      img.hero-image(src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Beautiful view of Mount Fuji")
+      
+      // Main content
+      block content
+      
+      // Footer
+      div.email-footer
+        div.social-links
+          a.social-link(href="#") Instagram
+          a.social-link(href="#") Facebook
+          a.social-link(href="#") Twitter
+        
+        p.footer-text Ryokou Travel Inc.
+        p.footer-text &copy; #{new Date().getFullYear()} All rights reserved, Monsoon
+        
+        div.footer-divider
+        
+        p.footer-text
+          | You're receiving this email because you're a member of Ryokou.
+          br
+          a.unsubscribe(href="#") Unsubscribe 

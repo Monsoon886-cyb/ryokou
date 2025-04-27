@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Ryokou | #{title || 'Welcome'}
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="icon", href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛩️</text></svg>")
+
+  body.tours-page
+    .animated-bg
+      .circle.circle1
+      .circle.circle2
+      .circle.circle3
+    //Header
+    include _header
+
+    //Content
+    block content
+    
+        
+    //Footer
+    include _footer
+
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
+    //- script(src="/js/script.js")
+    script(src="/js/login&out.js")
+    
+    //Additional scripts for specific pages
+    block scripts

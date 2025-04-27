@@ -1,0 +1,22 @@
+extends base
+
+block content
+  .reset-password-container
+    .reset-password-header
+      h2.reset-password-title Reset Your Password
+      p.reset-password-subtitle Enter your new password below
+
+    form.reset-password-form(action="/resetPassword" method="POST")
+      .form-group
+        label(for="password") New Password
+        input#password(type="password" name="password" required placeholder="Enter new password")
+      .form-group
+        label(for="passwordConfirm") Confirm New Password
+        input#passwordConfirm(type="password" name="passwordConfirm" required placeholder="Confirm new password")
+      
+      button.btn.btn--green(type="submit")
+        i.fas.fa-lock
+        span Reset Password
+
+block scripts
+  script(src="/js/resetPassword.js") 

@@ -1,0 +1,19 @@
+extends base
+
+block content
+  .error-container
+    .error-content
+      .error-symbol
+        i.fas.fa-torii-gate
+      h2.error-title #{title}
+      .error-message
+        
+        p.error-text #{msg}
+      
+      .error-japanese
+        p 道に迷った
+        span.error-translation Lost on the path
+      
+      .error-actions
+        a.btn.error-btn(href="/") Return Home
+          i.fas.fa-home.error-icon

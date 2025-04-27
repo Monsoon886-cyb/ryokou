@@ -1,0 +1,73 @@
+extends base
+
+block content
+  .explore-container
+    .explore-header
+      h1.explore-title Share your memories of the tour
+      p.explore-subtitle Discover the beauty of this amazing destination
+    
+    .explore-content
+      if explores && explores.length > 0
+        .explores-grid
+          each explore in explores
+            .explore-card
+              .explore-card-header
+                .user-photo
+                  if explore.user && explore.user.photo
+                    img(src=`/img/users/${explore.user.photo}`, alt=`${explore.user.name}`)
+                  else
+                    img(src='/img/users/default.jpg', alt='User')
+                  span.user-name= explore.user ? explore.user.name : 'User'
+                .created-date
+                  i.far.fa-calendar-alt
+                  if explore.createdAt
+                    span= new Date(explore.createdAt).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+                  else
+                    span Unknown date
+              
+              .explore-images
+                if explore.images && explore.images.length > 0
+                  each image, index in explore.images
+                    .explore-image
+                      img(src=`/img/tours/explore/${image}`, alt=`Explore image ${index+1}`)
+              
+              .explore-description
+                p= explore.description
+      else
+        .explore-placeholder
+          i.fas.fa-map-marked-alt
+          h2 No memories shared yet
+          p Be the first to share your tour experiences with others!
+      
+      .explore-actions
+        
+    
+    
+    button.share-btn(type="button")
+      i.fas.fa-share-alt
+      span Share
+      
+    .photo-upload-container
+      .photo-upload-content
+        // Hidden input fields for tour and user IDs
+        input(type="hidden" id="tourId" name="tour" value=tourId)
+        input(type="hidden" id="userId" name="user" value=user && user.id)
+        
+        .photo-upload-row
+          .photo-upload-circle.large
+            .plus-icon +
+            input.photo-upload-input(type="file" accept="image/*" data-circle="large")
+          .photo-upload-circle.large
+            .plus-icon +
+            input.photo-upload-input(type="file" accept="image/*" data-circle="large")
+          .photo-upload-circle.large
+            .plus-icon +
+            input.photo-upload-input(type="file" accept="image/*" data-circle="large")
+        textarea.experience-text-input(placeholder="Write your experience...")
+        .photo-upload-actions
+          button.upload-cancel-btn Cancel
+          button.upload-submit-btn Submit
+
+block scripts
+  script(src='/js/explore.js')
+  

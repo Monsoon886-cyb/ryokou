@@ -1,0 +1,58 @@
+extends baseEmail
+
+block content
+  p Hi #{firstName},
+  p Thank you for booking a tour with Ryokou! We're excited to confirm your reservation.
+  
+  .booking-details
+    h3 Booking Details
+    table.booking-table
+      tr
+        td.booking-label Tour Name:
+        td.booking-value #{tour.name}
+      tr
+        td.booking-label Date:
+        td.booking-value #{tour.startDates[0].toLocaleString('en-US', {month: 'long', day: 'numeric', year: 'numeric'})}
+      tr
+        td.booking-label Duration:
+        td.booking-value #{tour.duration} days
+      tr
+        td.booking-label Number of Participants:
+        td.booking-value #{bookings.passengerNum}
+      if bookings.passengers && bookings.passengers.length > 0
+        tr
+          td.booking-label Participants:
+          td.booking-value #{bookings.passengers.join(', ')}
+      tr
+        td.booking-label Total Paid:
+        td.booking-value Rs #{bookings.price}
+      tr.booking-reference-row
+        td.booking-label Booking Reference:
+        td.booking-value.ref-value #{bookings.paymentId}
+  
+  .japanese-section
+    p.translation Thank you for your booking. We look forward to your amazing journey!
+  
+  .tour-info
+    h3 Tour Information
+    p.tour-description #{tour.description}
+    if tour.startLocation
+      p.meeting-point
+        strong Meeting Point: 
+        | #{tour.startLocation.description}
+  
+  .preparation
+    h3 Preparation Tips
+    ul.preparation-list
+      li Bring comfortable walking shoes
+      li Pack weather-appropriate clothing
+      li Don't forget your camera
+      li Bring any medications you might need
+      li We recommend travel insurance
+  
+  p If you have any questions or need to make changes to your booking, please contact our support team at support@ryokou.com.
+  
+  p
+    strong We look forward to providing you with an unforgettable travel experience!
+  
+  p - The Ryokou Team 

@@ -1,0 +1,92 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        .user-profile-card
+          if user && user.photo
+            img.profile-photo(src=`/img/users/${user.photo}`, alt="User photo")
+            h3.profile-name= user.name
+          //- else
+          //-   img.profile-photo(src='/img/users/default.jpg', alt="User photo")
+          //-   h3.profile-name= user ? user.name : 'Guest'
+
+        ul.side-nav
+          li.side-nav--active
+            a(href='#')
+              i.fas.fa-cog
+              | Settings
+          li
+            a(href='/myjourneys')
+              i.fas.fa-luggage-cart
+              | My Journeys
+          li
+            a(href='/myreviews')
+              i.fas.fa-star
+              | My Reviews
+          li
+            a(href='/getBillings')
+              i.fas.fa-credit-card
+              | Billing
+        
+        if user && user.role === 'admin'
+          .admin-nav
+            h5.admin-nav__heading Admin Panel
+            ul.side-nav
+              li
+                a(href='#')
+                  i.fas.fa-users
+                  | Manage Users
+              li
+                a(href='#')
+                  i.fas.fa-star
+                  | Manage Reviews
+              li
+                a(href='#')
+                  i.fas.fa-file-invoice-dollar
+                  | Manage Bookings
+
+      .user-view__content
+        .user-view__form-container
+          h2.heading-secondary Your Account Settings
+          .form-container
+            form.form.form-user-data
+              .form__group
+                label.form__label(for='name') Name
+                input#name.form__input(type='text', value=  user.name , required)
+              .form__group
+                label.form__label(for='email') Email Address
+                input#email.form__input(type='email', value= user.email , required)
+              .form__group.form__photo-upload
+                if user && user.photo
+                  img.form__user-photo(src=`/img/users/${user.photo}`, alt='User photo')
+                else
+                  img.form__user-photo(src='/img/users/default.jpg', alt='User photo')
+                input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+                label(for='photo') Choose New Photo
+              .form__group.right
+                button.btn.update-btn(type="submit") Save Settings
+        
+        .divider
+          span.divider-text セキュリティ
+          span.divider-translate Security
+        
+        .user-view__form-container
+          h2.heading-secondary Change Password
+          .form-container
+            form.form.form-user-password
+              .form__group
+                label.form__label(for='password-current') Current Password
+                input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+              .form__group
+                label.form__label(for='password') New Password
+                input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+              .form__group
+                label.form__label(for='password-confirm') Confirm Password
+                input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+              .form__group.right
+                button.btn.password-btn(type="submit") Update Password
+
+block scripts
+  script(src="/js/updateSettings.js")

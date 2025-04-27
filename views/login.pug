@@ -1,0 +1,33 @@
+extends base
+
+block content
+  .login-container
+    .animated-bg
+      .circle.circle1
+      .circle.circle2
+      .circle.circle3
+      
+    .login-form-container
+      h2.login-heading Log into your account
+      form.login-form
+        .form-group
+          label.form-label(for="email") Email address
+          input.form-input#email(type="email" placeholder="you@example.com" required)
+        .form-group
+          label.form-label(for="password") Password
+          input.form-input#password(type="password" placeholder="••••••••" required minlength="8")
+        .form-actions
+          button.btn.login-btn-submit(type="submit") Log in
+      
+      .login-footer
+        p.login-signup-text Don't have an account yet? 
+          a.login-signup-link(href="/signup") Sign up here
+        p.login-forgot-text
+          a.login-forgot-link(href="/forgotPassword") Forgot your password?
+    
+    .login-image
+      .login-image-overlay
+      img.login-background-img(src="/img/wallpaperflare.com_wallpaper (2).jpg" alt="Traditional Japanese Scenery")
+      .login-quote
+        p.login-quote-text "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes."
+        p.login-quote-author — Marcel Proust

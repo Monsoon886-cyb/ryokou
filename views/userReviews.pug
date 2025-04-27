@@ -1,0 +1,55 @@
+extends base
+
+mixin reviewCard(review)
+  .user-review-card(data-review-id=review.id)
+    .review-content
+      .review-header
+        .review-date
+          i.fas.fa-calendar
+          span= review.createdAt.toLocaleString('en-US', {day: 'numeric', month: 'long', year: 'numeric'})
+
+      .review-rating
+        - const rating = Math.round(review.rating)
+        each star in [1, 2, 3, 4, 5]
+          if star <= rating
+            i.fas.fa-star.review-star
+          else
+            i.far.fa-star.review-star
+
+      .review-text
+        p= review.review
+
+      button.delete-btn(data-review-id=review.id)
+        i.fas.fa-trash
+        span  Delete
+
+block content
+  .user-reviews-container
+    .user-reviews-header
+      if user
+        .user-info
+          img.user-avatar(src=`/img/users/${user.photo}`, alt=`${user.name}`)
+          .user-details
+            h2.user-name Ryokou
+            p.reviews-count
+              i.fas.fa-comment
+              span #{reviews.length} Review
+
+    if reviews && reviews.length > 0
+      .user-reviews-grid
+        each review in reviews
+          +reviewCard(review)
+    else
+      .no-reviews
+        i.fas.fa-comment-slash
+        h3 No reviews yet
+        p Share your experience from your wonderful journey.
+        a.write-review-btn(href='/tours') 
+          i.fas.fa-pen
+          span Explore Tours
+
+    .japan-quote
+      p.japan-quote-en "Sharing memories makes the journey even more brilliant" 
+
+block scripts
+  script(src="/js/deleteReviews.js") 

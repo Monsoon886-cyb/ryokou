@@ -1,0 +1,61 @@
+extends baseEmail
+
+block content
+  div.email-content
+    h2.greeting Welcome to Ryokou, #{firstName}!
+
+    p.message
+      | Thank you for joining our community of travelers passionate about exploring the beauty of the world. 
+      | Your journey with us has just begun, and we're excited to help you discover the hidden gems
+      | and iconic landmarks across the Land of the Rising Sun.
+
+    p.message
+      | Your account has been successfully created and you're now ready to
+      span.highlight  explore tours, plan your dream travels, and connect with fellow travelers.
+
+    // Japanese Welcome
+    div.japanese-greeting
+      span.jp-text いらっしゃいませ
+      span.jp-translation Welcome to the Ryokou family
+
+    // Call to action
+    div.cta-container
+      a.cta-button(href=`${url}`) Start Exploring
+
+    // Features
+    div.features
+      h3.features-title What You Can Do Now
+
+      div.feature-item
+       
+        p.feature-text Browse our handpicked selection of authentic experiences and tours
+
+      div.feature-item
+        
+        p.feature-text Plan your travels with our interactive tools.
+
+      div.feature-item
+       
+        p.feature-text Connect with experienced guides who will bring your journey to life
+
+    // Account Security
+    div.security-reminder
+      h4.security-title Protect Your Account
+      p.security-text
+        | To keep your account secure, please:
+        br
+        | - Use a strong, unique password
+        br
+        | - Never share your login details with others
+        br
+        | - Update your contact information if it changes
+
+    p.message
+      | If you have any questions or need assistance planning your journey, 
+      | our team is always here to help. Feel free to contact us at 
+      a(href="mailto:support@ryokou.com") support@ryokou.com
+
+    p.message
+      | Safe travels,
+      br
+      | The Ryokou Team
