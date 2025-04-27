@@ -76,6 +76,7 @@ const book = async (tour, user, price, passengers, passengerNum) => {
       }, 1000);
     }
   } catch (err) {
+    console.log(err);
     showAlertssz(err.response.data.message, 'error');
     // Reset button text and state on error
     if (bookBtn) {
